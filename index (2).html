@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>قصة حب إياد و حياة</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    color: #fff;
+    text-align: center;
+}
+
+header {
+    padding: 30px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 10px;
+}
+
+.card {
+    background: rgba(255,255,255,0.08);
+    padding: 20px;
+    margin: 15px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+img {
+    width: 100%;
+    border-radius: 15px;
+    margin-top: 15px;
+}
+
+#counter {
+    font-size: 22px;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+button {
+    background: #ffffff;
+    color: #333;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-family: 'Cairo';
+}
+
+button:hover {
+    background: #ddd;
+}
+
+.music-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    header {
+        font-size: 22px;
+    }
+
+    .card {
+        margin: 10px;
+        padding: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>إياد & حياة</header>
+
+<div class="container">
+
+<div class="card">
+    <h2>قصتنا</h2>
+    <p>
+    مو صدفة… هذا نصيب. من أول لحظة شفتج بيها، عرفت إنو حياتي راح تتغير.
+    </p>
+    <img src="https://c.top4top.io/p_3776grv3a0.jpg">
+</div>
+
+<div class="card">
+    <h2>مدة علاقتنا</h2>
+    <div id="counter"></div>
+</div>
+
+<div class="card">
+    <h2>وعدي إلج</h2>
+    <p id="text">راح أبقى وياج بكل الظروف.</p>
+    <button onclick="changeText()">اضغطي هنا</button>
+</div>
+
+</div>
+
+<!-- الموسيقى -->
+<audio id="music" loop preload="auto">
+    <source src="https://files.catbox.moe/ncj838.mp3" type="audio/mp3">
+</audio>
+
+<button class="music-btn" onclick="playMusic()">تشغيل</button>
+
+<script>
+const music = document.getElementById("music");
+
+function playMusic() {
+    music.muted = false;
+    music.play().catch(() => {});
+}
+
+// تشغيل أول ما المستخدم يلمس الصفحة
+function autoPlayMusic() {
+    music.muted = false;
+    music.play().catch(() => {});
+}
+
+// دعم كل الأجهزة
+document.addEventListener("click", autoPlayMusic, { once: true });
+document.addEventListener("touchstart", autoPlayMusic, { once: true });
+
+function updateCounter() {
+    let startDate = new Date("2026-04-19T00:00:00");
+    let now = new Date();
+
+    let diff = now - startDate;
+
+    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    let minutes = Math.floor((diff / (1000 * 60)) % 60);
+    let seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("counter").innerHTML =
+        days + " يوم • " +
+        hours + " ساعة • " +
+        minutes + " دقيقة • " +
+        seconds + " ثانية";
+}
+
+setInterval(updateCounter, 1000);
+updateCounter();
+
+function changeText() {
+    document.getElementById("text").innerHTML =
+    "أحبج أكثر من أي وقت مضى… وأريد أبني مستقبلي وياج.";
+}
+</script>
+
+</body>
+</html>
